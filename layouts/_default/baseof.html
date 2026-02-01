@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko" data-bs-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{{ partial "seo.html" . }}
+<link rel="home" href="/">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/icon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192x192.png">
+<link rel="apple-touch-icon" sizes="192x192" href="/icon-192x192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200..900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css">
+{{/*  */}}
+{{- $theme_css := resources.Get "css/theme.css" | minify | fingerprint -}}
+{{- $theme_js := resources.Get "js/theme.js" | minify | fingerprint -}}
+{{- $main_scss := resources.Get "scss/main.scss" 
+    | resources.ExecuteAsTemplate "scss/main.tmp.scss" . 
+    | toCSS (dict "targetPath" "css/main.css" "outputStyle" "compressed") 
+    | fingerprint -}}
+{{- $main_js := resources.Get "js/main.js" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $theme_css.RelPermalink }}" integrity="{{ $theme_css.Data.Integrity }}">
+<link rel="stylesheet" href="{{ $main_scss.RelPermalink }}" integrity="{{ $main_scss.Data.Integrity }}">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ $theme_js.RelPermalink }}" integrity="{{ $theme_js.Data.Integrity }}"></script>
+<script src="{{ $main_js.RelPermalink }}" integrity="{{ $main_js.Data.Integrity }}"></script>
+</head>
+<body>
+{{ block "layout" . }}
+<div id="app" class="container">
+  <header>
+      <h1>
+        <a href="/">{{ .Site.Title }}</a>
+      </h1>
+      {{ partial "bio.html" . }}
+      {{ partial "sns.html" . }}
+  </header>
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+  <footer>
+    <div>
+      <div>
+        &copy; {{ now.Format "2006" }}, 
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noreferrer">Hugo</a>
+      </div>
+      <div>
+        {{ partial "theme.html" . }}
+      </div>
+    </div>
+  </footer>
+</div>
+{{ end }}
+</body>
+</html>

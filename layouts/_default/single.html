@@ -1,0 +1,64 @@
+{{ define "main" }}
+<article class="single">
+  <h2 class="single-title">{{ .Title }}</h2>
+  <div class="single-meta">
+    <div class="meta date">
+      <span class="label">Published:</span>
+      <span class="value">{{ .Date | time.Format ":date_medium" }}</span>
+    </div>
+
+    {{ with .GetTerms "categories" }}
+      <div class="meta categories">
+        <span class="label">Categories:</span>
+        <span class="value">
+          {{ $len := len . }}
+          {{ range $index, $cat := . }}
+            <a class="" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+            {{- if eq (add $index 1) $len }}.{{ else }}, {{ end -}}
+          {{ end }}
+        </span>
+      </div>
+    {{ end }}
+
+    {{ with .GetTerms "tags" }}
+      <div class="meta tags">
+        <span class="label">Tags:</span>
+        <span class="value">
+          {{ $len := len . }}
+          {{ range $index, $tag := . }}
+            <a class="" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+            {{- if eq (add $index 1) $len }}.{{ else }}, {{ end -}}
+          {{ end }}
+        </span>
+      </div>
+    {{ end }}
+  </div>
+
+  <hr>
+
+  {{ .Content }}
+
+  {{ if or .PrevInSection .NextInSection }}
+    <hr>
+    <div class="post-navigation">
+      <div class="prev-post">
+        {{ if .PrevInSection }}
+            <a href="{{ .PrevInSection.Permalink }}">
+              <span>← Prev</span>
+              <strong>{{ .PrevInSection.Title }}</strong>
+            </a>
+        {{ end }}
+      </div>
+
+      <div class="next-post">
+        {{ if .NextInSection }}
+          <a href="{{ .NextInSection.Permalink }}">
+            <span>Next →</span>
+            <strong>{{ .NextInSection.Title }}</strong>
+          </a>
+        {{ end }}
+      </div>
+    </div>
+  {{ end }}
+</article>
+{{ end }}

@@ -1,0 +1,37 @@
+{{ $social := or .Params.social .Site.Params.social }}
+{{ $platforms := slice
+  (dict "key" "twitter"   "url" "https://x.com/"               "icon" "bi-twitter-x")
+  (dict "key" "facebook"  "url" "https://www.facebook.com/"    "icon" "bi-facebook")
+  (dict "key" "instagram" "url" "https://www.instagram.com/"   "icon" "bi-instagram")
+  (dict "key" "thread"    "url" "https://www.threads.net/@"    "icon" "bi-threads")
+  (dict "key" "youtube"   "url" "https://www.youtube.com/"     "icon" "bi-youtube")
+  (dict "key" "mastodon"  "url" "https://mastodon.social/@"    "icon" "bi-mastodon")
+  (dict "key" "tiktok"    "url" "https://www.tiktok.com/@"     "icon" "bi-tiktok")
+  (dict "key" "pinterest" "url" "https://www.pinterest.com/"   "icon" "bi-pinterest")
+  (dict "key" "linkedin"  "url" "https://www.linkedin.com/in/" "icon" "bi-linkedin")
+  (dict "key" "github"    "url" "https://github.com/"          "icon" "bi-github")
+}}
+
+{{- $active := slice -}}
+{{- range $platforms -}}
+  {{- $handle := index $social .key -}}
+  {{- if and $handle (ne $handle "") -}}
+    {{- $active = $active | append . -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if gt (len $active) 0 -}}
+<section class="sns">
+  <h2 class="visually-hidden">SNS</h2>
+  <ul class="social">
+    {{- range $active -}}
+      {{ $handle := index $social .key }}
+      <li>
+        <a href="{{ .url }}{{ $handle }}" target="_blank" rel="noopener noreferrer" class="social-link">
+          <i class="bi {{ .icon }} fs-4"></i>
+        </a>
+      </li>
+    {{- end -}}
+  </ul>
+</section>
+{{- end -}}

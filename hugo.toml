@@ -1,0 +1,34 @@
+baseURL = 'http://example.org/'
+languageCode = 'ko-KR'
+title = 'Hello, World!'
+
+[params.author]
+  name = "Brad"
+  summary = "Justice ain't gonna dispense itself. Someone has to fill this saddle."
+  avatar = "images/profile-picture.jpg"
+
+[params.social]
+  twitter = ""
+  facebook = ""
+  instagram = ""
+  thread = ""
+  youtube = ""
+  mastodon = ""
+  tiktok = ""
+  pinterest = ""
+  linkedin = ""
+  github = ""
+
+[params.colors.light]
+  main_color = "#4c9b1f"
+  main_subtle = "#367213"
+
+[params.colors.dark]
+  main_color = "#77b255"
+  main_subtle = "#a6d388"
+
+[params.pagination]
+  pagerSize = 10
+
+[markup.goldmark.renderer]
+  unsafe = true

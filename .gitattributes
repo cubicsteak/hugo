@@ -1,0 +1,3 @@
+hugo.toml merge=ours
+content/** merge=ours
+assets/user/** merge=ours

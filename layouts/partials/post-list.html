@@ -1,0 +1,12 @@
+<ul class="post-list">
+{{ $pages := .Pages }}
+{{ if .IsHome }}
+  {{ $pages = .Site.RegularPages }}
+{{ end }}
+{{ $paginator := .Paginate $pages (or .Site.Params.pagination.pagerSize 10) }}
+{{ range $paginator.Pages }}
+  <li>
+    {{ partial "post-item.html" . }}
+  </li>
+{{ end }}
+</ul>

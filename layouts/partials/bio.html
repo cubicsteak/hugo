@@ -1,0 +1,35 @@
+{{ $author := or .Params.author .Site.Params.author }}
+{{- $avatarSource := $author.avatar -}}
+{{- $avatarUrl := "" -}}
+
+{{- if (hasPrefix $avatarSource "http") -}}
+  {{- $avatarUrl = $avatarSource -}}
+{{- else -}}
+  {{- $avatarRes := resources.Get $avatarSource -}}
+  {{- if $avatarRes -}}
+    {{- $avatarUrl = $avatarRes.RelPermalink -}}
+  {{- end -}}
+{{- end -}}
+
+<section class="bio">
+  <h2 class="visually-hidden">Bio</h2>
+  <div class="profile">
+    {{ if $avatarUrl }}
+      <img
+        src="{{ $avatarUrl }}"
+        alt="Profile picture"
+        class="bio-avatar">
+    {{ else }}
+      <div class="bio-avatar avatar-placeholder">
+        <span>{{ substr .Site.Title 0 1 }}</span>
+      </div>
+    {{ end }}
+
+    <div class="bio-author">
+      {{ with $author }}
+        Written by <strong>{{ .name }}</strong>.<br>
+        {{ .summary }}
+      {{ end }}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,10 @@
+name = "Hugo Starter Blog"
+description = "Hugo Starter Blog"
+homepage = "https://github.com/cubicsteak/hugo"
+tags = ["hugo","starter", "blog", "minimal", "responsive", "bootstrap"]
+features = []
+licensetype = "MIT"
+
+[author]
+    name = "Brad"
+    homepage = "https://github.com/cubicsteak"

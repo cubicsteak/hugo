@@ -1,0 +1,45 @@
+{{- $author := .Site.Params.author.name -}}
+{{- $siteTitle := .Site.Title -}}
+{{- $title := cond .IsHome $siteTitle (printf "%s | %s" .Title $siteTitle) -}}
+
+{{- $description := .Description | default .Summary | default .Site.Params.description | default .Site.Params.author.summary -}}
+{{- $description := $description | plainify | replaceRE "[\n\r\t\\s]+" " " -}}
+{{- $description := $description | truncate 160 -}}
+
+{{- $allKeywords := slice -}}
+{{- range $k, $v := .Site.Taxonomies.categories }}{{ $allKeywords = $allKeywords | append $k }}{{ end -}}
+{{- range $k, $v := .Site.Taxonomies.tags }}{{ $allKeywords = $allKeywords | append $k }}{{ end -}}
+{{- $keywords := delimit (uniq $allKeywords) ", " -}}
+
+{{- $img := "" -}}
+{{- if .Params.image -}}
+  {{- $img = .Params.image -}}
+{{- else -}}
+  {{- $urls := findRE "<img [^>]*src=\"([^\"]+)\"" .Content 1 -}}
+  {{- if $urls -}}
+    {{- $img = index (findRESubmatch "<img [^>]*src=\"([^\"]+)\"" (index $urls 0)) 0 1 -}}
+  {{- else -}}
+    {{- $img = .Site.Params.author.avatar -}}
+  {{- end -}}
+{{- end -}}
+{{- if not (hasPrefix $img "http") -}}
+  {{- $img = $img | absURL -}}
+{{- end -}}
+
+<meta name="generator" content="Hugo">
+<meta name="author" content="{{ $author }}">
+<meta name="description" content="{{ $description }}">
+<meta name="keywords" content="{{ $keywords }}">
+
+<meta property="og:title" content="{{ if .IsHome }}{{ $siteTitle }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:image" content="{{ $img }}">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ if .IsHome }}{{ $siteTitle }}{{ else }}{{ .Title }}{{ end }}">
+<meta name="twitter:description" content="{{ $description }}">
+<meta name="twitter:image" content="{{ $img }}">
+
+<link rel="canonical" href="{{ .Permalink }}">

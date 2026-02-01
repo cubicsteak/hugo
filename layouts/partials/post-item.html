@@ -1,0 +1,9 @@
+<article class="post-item">
+  <header class="post-header">
+    <time>{{ .Date | time.Format ":date_medium" }}</time>
+    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  </header>
+  <section class="post-summary">
+    {{ .Summary | plainify | truncate 300 }}
+  </section>
+</article>
