@@ -3,6 +3,9 @@ languageCode = 'ko-KR'
 title = 'Hello, World!'
 copyright = 'All rights reserved.'
 
+[params]
+  defaultDraft = false
+
 [params.author]
   name = "Brad"
   summary = "Justice ain't gonna dispense itself. Someone has to fill this saddle."
