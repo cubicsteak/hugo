@@ -1,6 +1,6 @@
 +++
 date = '2026-02-15T13:12:40+09:00'
-draft = true
+draft = false
 title = "미식축구 대학리그"
 categories = []
 tags = ['Gemini']
