@@ -161,8 +161,8 @@ img {
 
 /* Single */
 .single {
-  word-break: keep-all; 
-  overflow-wrap: break-word; 
+  word-break: break-all;
+  text-align: justify;
 
   &>hr {
     /* opacity: 0.5; */
