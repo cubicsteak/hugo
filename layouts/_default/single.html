@@ -1,7 +1,7 @@
 {{ define "main" }}
 <article class="single">
-  <h2 class="single-title">{{ .Title }}</h2>
-  <div class="single-meta">
+  <h1 class="post-title">{{ .Title }}</h1>
+  <div class="post-meta">
     <div class="meta date">
       <span class="label">Published:</span>
       <span class="value">{{ .Date | time.Format ":date_medium" }}</span>
@@ -36,10 +36,13 @@
 
   <hr>
 
-  {{ .Content }}
+  <div class="post-content">
+    {{ .Content }}
+  </div>
+
+  <hr>
 
   {{ if or .PrevInSection .NextInSection }}
-    <hr>
     <div class="post-navigation">
       <div class="prev-post">
         {{ if .PrevInSection }}

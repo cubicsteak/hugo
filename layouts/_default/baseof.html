@@ -39,11 +39,13 @@
 {{ block "layout" . }}
 <div id="app" class="container">
   <header>
-      <h1>
-        <a href="/">{{ .Site.Title }}</a>
-      </h1>
-      {{ partial "bio.html" . }}
-      {{ partial "sns.html" . }}
+    {{ if .IsHome }}
+      <h1 class="site-title"><a href="/">{{ .Site.Title }}</a></h1>
+    {{ else }}
+      <div class="site-title"><a href="/">{{ .Site.Title }}</a></div>
+    {{ end }}
+    {{ partial "bio.html" . }}
+    {{ partial "sns.html" . }}
   </header>
   <main>
     {{ block "main" . }}{{ end }}
@@ -52,7 +54,11 @@
     <div>
       <div>
         &copy; {{ now.Format "2006" }}, 
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noreferrer">Hugo</a>
+        {{ if and .Site.Copyright (ne .Site.Copyright "") }}
+          {{ .Site.Copyright | safeHTML }}
+        {{ else }}
+          Built with <a href="https://gohugo.io/" target="_blank" rel="noreferrer">Hugo</a>
+        {{ end }}
       </div>
       <div>
         {{ partial "theme.html" . }}
