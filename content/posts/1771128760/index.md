@@ -1,10 +1,10 @@
-+++
-date = '2026-02-15T13:12:40+09:00'
-draft = false
-title = "미식축구 대학리그"
-categories = []
-tags = ['Gemini']
-+++
+---
+title: "미식축구 대학리그"
+date: 2026-02-15T13:12:40+09:00
+draft: false
+categories: []
+tags: ['Gemini']
+---
 
 ## 미식축구의 대학리그가 프로리그보다 더 주목받는 이유
 

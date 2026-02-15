@@ -1,10 +1,10 @@
-+++
-date = '2026-02-03T22:12:55+09:00'
-draft = false
-title = "테스트"
-categories = []
-tags = []
-+++
+---
+title: "테스트"
+date: 2026-02-03T22:12:55+09:00
+draft: false
+categories: []
+tags: []
+---
 
 <figure>
   <img src="https://images.unsplash.com/photo-1769084644137-ec5f39824888" alt="복슬복슬한 개가 타일 발코니에 앉아 있다">
