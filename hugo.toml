@@ -1,6 +1,7 @@
 baseURL = 'http://irony.pages.dev/'
 languageCode = 'ko-KR'
 title = 'Hello, World!'
+copyright = 'All rights reserved.'
 
 [params.author]
   name = "Brad"
