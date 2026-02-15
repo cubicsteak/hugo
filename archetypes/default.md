@@ -1,7 +1,7 @@
-+++
-date = '{{ .Date }}'
-draft = true
-title = "{{ replace .File.ContentBaseName "-" " " | title }}"
-categories = []
-tags = []
-+++
+---
+title: "{{ replace .Name '-' ' ' | title }}"
+date: {{ .Date }}
+draft: {{ .Site.Params.defaultDraft | default true }}
+categories: []
+tags: []
+---

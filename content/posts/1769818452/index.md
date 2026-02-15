@@ -1,10 +1,10 @@
-+++
-date = '2026-01-31T09:14:34+09:00'
-draft = false
-title = 'My Second Post!'
-categories = []
-tags = []
-+++
+---
+title: "My Second Post!"
+date: 2026-01-31T09:14:34+09:00
+draft: false
+categories: []
+tags: []
+---
 
 Wow! I love blogging so much already.
 
