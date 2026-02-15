@@ -1,10 +1,10 @@
-+++
-date = '2026-01-30T22:05:33+09:00'
-draft = false
-title = "Hello, World!"
-categories = []
-tags = []
-+++
+---
+title: "Hello, World!"
+date: 2026-01-30T22:05:33+09:00
+draft: false
+categories: []
+tags: []
+---
 
 This is my first post on my new fake blog! How exciting!
 

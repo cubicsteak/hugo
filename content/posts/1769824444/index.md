@@ -1,10 +1,10 @@
-+++
-date = '2026-01-31T10:54:22+09:00'
-draft = false
-title = 'New Beginnings'
-categories = []
-tags = []
-+++
+---
+title: "New Beginnings"
+date: 2026-01-31T10:54:22+09:00
+draft: false
+categories: []
+tags: []
+---
 
 
 Far far away, behind the word mountains, far from the countries Vokalia and

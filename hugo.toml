@@ -2,6 +2,9 @@ baseURL = 'http://example.org/'
 languageCode = 'ko-KR'
 title = 'Hello, World!'
 
+[params]
+  defaultDraft = true
+
 [params.author]
   name = "Brad"
   summary = "Justice ain't gonna dispense itself. Someone has to fill this saddle."
